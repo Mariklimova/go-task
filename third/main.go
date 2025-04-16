@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	// 	1. Вывести каждый символ строки “Привет” 2 способами:, используя for и for range.
@@ -28,10 +31,32 @@ func main() {
 	fmt.Println(string(runes2))
 
 	// 3. Проверить, содержит ли строка hello world подстроку world.
+	str3 := "hello world"
+	substr3 := "world"
+
+	if strings.Contains(str3, substr3) {
+		fmt.Printf("Строка \"%s\" содержит подстроку \"%s\"\n", str3, substr3)
+	} else {
+		fmt.Printf("Строка \"%s\" не содержит подстроку \"%s\"\n", str3, substr3)
+	}
 
 	// 4. Подсчитать, сколько раз подстрока go встречается в gogogopher.
+	str_4 := "gogogopher"
+	substr_4 := "go"
+
+	count := strings.Count(str_4, substr_4)
+	fmt.Printf("Подстрока \"%s\" встречается в строке \"%s\" %d раз(а)\n", substr_4, str_4, count)
+		
 	// 5. Заменить все cat на dog в строке cat-cat-dog.
+	
+	str5 := "cat-cat-dog"
+
+	result := strings.ReplaceAll(str5, "cat", "dog")
+	fmt.Printf("Результат замены: %s\n", result)
+	
 	// 6. Заменить первое вхождение go на GO в строке go go go.
+	
+	
 	// 7. Сделать все буквы строки hello заглавными.
 	// 8. Убрать пробелы из строки “ hello world “.
 	// 9. Разбить строку a,b,c,d на срез строк.
