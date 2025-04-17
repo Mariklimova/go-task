@@ -46,26 +46,76 @@ func main() {
 
 	count := strings.Count(str_4, substr_4)
 	fmt.Printf("Подстрока \"%s\" встречается в строке \"%s\" %d раз(а)\n", substr_4, str_4, count)
-		
+
 	// 5. Заменить все cat на dog в строке cat-cat-dog.
-	
+
 	str5 := "cat-cat-dog"
 
-	result := strings.ReplaceAll(str5, "cat", "dog")
-	fmt.Printf("Результат замены: %s\n", result)
-	
+	result5 := strings.ReplaceAll(str5, "cat", "dog")
+	fmt.Printf("Результат замены: %s\n", result5)
+
 	// 6. Заменить первое вхождение go на GO в строке go go go.
-	
-	
+
+	str6 := "go go go"
+
+	result6 := strings.Replace(str6, "go", "GO", 1)
+	fmt.Printf("Результат замены: %q\n", result6)
+
 	// 7. Сделать все буквы строки hello заглавными.
+
+	str7 := "hello"
+	fmt.Printf(strings.ToUpper(str7))
+	fmt.Println()
+
 	// 8. Убрать пробелы из строки “ hello world “.
+
+	str_8 := " hello world "
+	fmt.Println(strings.ReplaceAll(str_8, " ", ""))
+
 	// 9. Разбить строку a,b,c,d на срез строк.
+
+	str_9 := "a,b,c,d"
+	fmt.Println(strings.Split(str_9, ","))
+
 	// 10. Объединить []string{"go", "lang"} в строку с пробелом между ними.
+
+	words := []string{"go", "lang"}
+	fmt.Println(strings.Join(words, " "))
+
 	// 11. Вывести ha 5 раз подряд.
+
+	fmt.Println(strings.Repeat("ha", 5))
+
 	// 12. Проверить, начинается ли строка golang с go.
+	str_12:="golang"
+	prefix:="go"
+
+	if strings.HasPrefix(strings.ToLower(str_12), strings.ToLower(prefix)){
+		fmt.Printf("Строка '%s' начинается с '%s'\n", str_12, prefix)
+	}else{
+		fmt.Printf("Строка '%s' НЕ начинается с '%s'\n", str_12, prefix)
+	}
+	
+	
 	// 13. Проверить, заканчивается ли строка index.html на .html.
+	
+	str_13 := "index.html"
+    end_str := ".html"
+	
+	if strings.HasSuffix(strings.ToLower(str_13), strings.ToLower(end_str)) {
+		fmt.Printf("Строка '%s' заканчивается на '%s'\n", str_13, end_str)
+	} else {
+		fmt.Printf("Строка '%s' НЕ заканчивается на '%s'\n", str_13, end_str)
+	}
+
 	// 14. Из строки h e l l o удалить все пробелы.
+	
+	fmt.Println(strings.ReplaceAll("h e l l o", " ", ""))
+	
 	// 15. Для строки GoLang напечатать каждый символ и его код, например: G - 71, o - 111, L - 76 и т.д.
+	
+	
+	
 	// 16. Подсчитать количество слов в строке go is awesome.
 	// 17. Подсчитать количество заглавных букв в строке GoLang.
 	// 18. Если строка заканчивается на ., удалить её.
