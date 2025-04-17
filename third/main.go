@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
 
 func main() {
@@ -87,21 +88,20 @@ func main() {
 	fmt.Println(strings.Repeat("ha", 5))
 
 	// 12. Проверить, начинается ли строка golang с go.
-	str_12:="golang"
-	prefix:="go"
+	str_12 := "golang"
+	prefix := "go"
 
-	if strings.HasPrefix(strings.ToLower(str_12), strings.ToLower(prefix)){
+	if strings.HasPrefix(strings.ToLower(str_12), strings.ToLower(prefix)) {
 		fmt.Printf("Строка '%s' начинается с '%s'\n", str_12, prefix)
-	}else{
+	} else {
 		fmt.Printf("Строка '%s' НЕ начинается с '%s'\n", str_12, prefix)
 	}
-	
-	
+
 	// 13. Проверить, заканчивается ли строка index.html на .html.
-	
+
 	str_13 := "index.html"
-    end_str := ".html"
-	
+	end_str := ".html"
+
 	if strings.HasSuffix(strings.ToLower(str_13), strings.ToLower(end_str)) {
 		fmt.Printf("Строка '%s' заканчивается на '%s'\n", str_13, end_str)
 	} else {
@@ -109,30 +109,107 @@ func main() {
 	}
 
 	// 14. Из строки h e l l o удалить все пробелы.
-	
+
 	fmt.Println(strings.ReplaceAll("h e l l o", " ", ""))
-	
+
 	// 15. Для строки GoLang напечатать каждый символ и его код, например: G - 71, o - 111, L - 76 и т.д.
-	
-	
-	
+
+	str_15 := "GoLang"
+
+	for _, char := range str_15 {
+		fmt.Printf("%c - %d, ", char, char)
+	}
+	fmt.Println()
+
 	// 16. Подсчитать количество слов в строке go is awesome.
+
+	words_16 := strings.Fields("go is awesome")
+	fmt.Println("Количество слов:", len(words_16))
+
 	// 17. Подсчитать количество заглавных букв в строке GoLang.
+
+	str_17 := "GoLang"
+	count_17 := 0
+
+	for _, char := range str_17 {
+		if unicode.IsUpper(char) {
+			count_17++
+		}
+	}
+	fmt.Printf("Количество заглавных букв: %d\n", count)
+
 	// 18. Если строка заканчивается на ., удалить её.
+
+	str_18 := "Текст с точкой в конце."
+	if strings.HasSuffix(str_18, ".") {
+		str_18 = str_18[:len(str_18)-1]
+	}
+	fmt.Println(str_18)
+
 	// 19. В предложении I love apples, заменить apples на oranges.
+
+	fmt.Println(strings.ReplaceAll("I love apples", "apples", "oranges"))
+
 	// 20. Учитывать только латинские гласные a, e, i, o, u.
+	str_20 := "Hello, World! Go is awesome!"
+	vowels := "aeiouAEIOU"
+	count_20 := 0
+
+	for _, char := range str_20 {
+		if strings.ContainsRune(vowels, char) {
+			count_20++
+		}
+	}
+
+	fmt.Printf("Количество латинских гласных: %d\n", count_20)
+
 	// 21. Инверсия регистра (если буква — заглавная, сделать строчной и наоборот) GoLang → gOlANG
+
+	result_21 := []rune("GoLang")
+	for i, char := range result_21 {
+		if unicode.IsUpper(char) {
+			result_21[i] = unicode.ToLower(char)
+		} else if unicode.IsLower(char) {
+			result_21[i] = unicode.ToUpper(char)
+		}
+	}
+	fmt.Println(string(result_21))
+
 	// 22. Проверка, является ли строка палиндромом. казак, шалаш → true
+
+
+
 	// 23. Поиск самого длинного слова в строке go is an expressive and concise language → expressive
+
+
+
 	// 24. Найти все уникальные символы в строке aabccdee → a b c d e
+	
+	
+	
 	// 	25. Подсчитать количество цифр в строке Пример: в abc123def456 — 6 цифр.
+
+
+
 	// 	26. Сделать первую букву каждого слова заглавной Пример: go is fun → Go Is Fun.
+
+
+
 	// 	27. Подсчитать количество символов пунктуации Для строки Hello, world! How are you? должно
 	// 	быть 3 (,, !, ?).
+
+
+
 	// 	28. Найти подстроки, начинающиеся с заглавной буквы Пример: Welcome To Go Language →
 	// 	Welcome, To, Go, Language
+
+
+
 	// 	29. Проверить, является ли строка числом Примеры: 123 → true, 12a3 → false
 	// 	Метод: strconv.Atoi
+
+
+
 	// 	30. Удалить из строки все согласные Пример: banana → aaa
 	//
 }
