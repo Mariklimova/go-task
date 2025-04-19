@@ -177,38 +177,39 @@ func main() {
 
 	// 22. Проверка, является ли строка палиндромом. казак, шалаш → true
 
+	str_22 := strings.ToLower("шалаш")
+	
+	runes_22 := []rune(str_22)
 
+	for i, j := 0, len(runes_22)-1; i < j; i, j = i+1, j-1 {
+		runes_22[i], runes_22[j] = runes_22[j], runes_22[i]
+	}
+
+	if str_22 != string(runes_22) {
+		fmt.Println(false)
+	} else {
+
+		fmt.Println(true)
+	}
 
 	// 23. Поиск самого длинного слова в строке go is an expressive and concise language → expressive
 
 
-
+	
 	// 24. Найти все уникальные символы в строке aabccdee → a b c d e
-	
-	
-	
+
 	// 	25. Подсчитать количество цифр в строке Пример: в abc123def456 — 6 цифр.
 
-
-
 	// 	26. Сделать первую букву каждого слова заглавной Пример: go is fun → Go Is Fun.
-
-
 
 	// 	27. Подсчитать количество символов пунктуации Для строки Hello, world! How are you? должно
 	// 	быть 3 (,, !, ?).
 
-
-
 	// 	28. Найти подстроки, начинающиеся с заглавной буквы Пример: Welcome To Go Language →
 	// 	Welcome, To, Go, Language
 
-
-
 	// 	29. Проверить, является ли строка числом Примеры: 123 → true, 12a3 → false
 	// 	Метод: strconv.Atoi
-
-
 
 	// 	30. Удалить из строки все согласные Пример: banana → aaa
 	//
