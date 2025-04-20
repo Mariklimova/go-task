@@ -178,7 +178,7 @@ func main() {
 	// 22. Проверка, является ли строка палиндромом. казак, шалаш → true
 
 	str_22 := strings.ToLower("шалаш")
-	
+
 	runes_22 := []rune(str_22)
 
 	for i, j := 0, len(runes_22)-1; i < j; i, j = i+1, j-1 {
@@ -194,11 +194,35 @@ func main() {
 
 	// 23. Поиск самого длинного слова в строке go is an expressive and concise language → expressive
 
+	str_23 := "go is an expressive and concise language"
+	words_23 := strings.Fields(str_23)
+	longest := ""
 
-	
+	for _, word := range words_23 {
+		if len(word) > len(longest) {
+			longest = word
+		}
+	}
+	fmt.Println(longest)
+
 	// 24. Найти все уникальные символы в строке aabccdee → a b c d e
 
+	str_24:="aabccdee"
+	charMap := make(map[rune]bool)
+	var result []rune
+
+	for _, char := range str_24 {
+		if !charMap[char] {
+			charMap[char] = true
+			result = append(result, char)
+		}
+	}
+
+	fmt.Println(string(result))
+
 	// 	25. Подсчитать количество цифр в строке Пример: в abc123def456 — 6 цифр.
+
+
 
 	// 	26. Сделать первую букву каждого слова заглавной Пример: go is fun → Go Is Fun.
 
