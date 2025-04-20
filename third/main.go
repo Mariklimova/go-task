@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -207,7 +208,7 @@ func main() {
 
 	// 24. Найти все уникальные символы в строке aabccdee → a b c d e
 
-	str_24:="aabccdee"
+	str_24 := "aabccdee"
 	charMap := make(map[rune]bool)
 	var result []rune
 
@@ -222,19 +223,71 @@ func main() {
 
 	// 	25. Подсчитать количество цифр в строке Пример: в abc123def456 — 6 цифр.
 
-
+	str_25 := "abc123def456"
+	count_25 := 0
+	for _, char := range str_25 {
+		if unicode.IsDigit(char) {
+			count_25++
+		}
+	}
+	fmt.Printf("Количество цифр: %d\n", count_25)
 
 	// 	26. Сделать первую букву каждого слова заглавной Пример: go is fun → Go Is Fun.
+
+	str_26 := "go is fun"
+	words_26 := strings.Fields(str_26)
+	for i, word := range words_26 {
+		if len(word) > 0 {
+			words_26[i] = string(unicode.ToUpper(rune(word[0]))) + word[1:]
+		}
+	}
+	fmt.Println(strings.Join(words_26, " "))
 
 	// 	27. Подсчитать количество символов пунктуации Для строки Hello, world! How are you? должно
 	// 	быть 3 (,, !, ?).
 
+	str_27 := "Hello, world! How are you?"
+	count_27 := 0
+	for _, char := range str_27 {
+		if unicode.IsPunct(char) {
+			count_27++
+		}
+	}
+	fmt.Printf("Количество символов пунктуации: %d\n", count_27) 
+	
 	// 	28. Найти подстроки, начинающиеся с заглавной буквы Пример: Welcome To Go Language →
 	// 	Welcome, To, Go, Language
+
+	words_28 := strings.Fields("Welcome To Go Language")
+	var result_28 []string
+
+	for _, word := range words_28 {
+		if len(word) > 0 && unicode.IsUpper([]rune(word)[0]) {
+			result_28 = append(result_28, word)
+		}
+	}
+	fmt.Println(strings.Join(result_28, ", "))
 
 	// 	29. Проверить, является ли строка числом Примеры: 123 → true, 12a3 → false
 	// 	Метод: strconv.Atoi
 
-	// 	30. Удалить из строки все согласные Пример: banana → aaa
-	//
+	str_29:="123"
+	if _, err := strconv.Atoi(str_29); err == nil {
+		fmt.Println(true)
+	} else {
+		fmt.Println(false)
+	}
+
+	// 	30. Удалить из строки все согласные Пример: banana → aaa//
+
+	str_30 := "banana"
+	vowels_30 := "aeiouAEIOUаеёиоуыэюяАЕЁИОУЫЭЮЯ"
+	var result_30 strings.Builder
+
+	for _, char := range str_30 {
+		if strings.ContainsRune(vowels_30, char) || !unicode.IsLetter(char) {
+			result_30.WriteRune(char)
+		}
+	}
+	fmt.Println(result_30.String())
 }
