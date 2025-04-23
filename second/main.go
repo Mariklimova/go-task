@@ -127,8 +127,8 @@ func main() {
 	// 9. Напишите программу, которая принимает строку и подсчитывает количество гласных в ней.
 	// Ввод: Hello World → Вывод: 3
 	// Ввод: Go Programming → Вывод: 4
-	
-	var str_9 string ="Hello World"
+
+	var str_9 string = "Hello World"
 	vowels := "aeiouAEIOU"
 	count := 0
 
@@ -143,14 +143,38 @@ func main() {
 	// Ввод: madam → Вывод: Да, это палиндром
 	// Ввод: hello → Вывод: Нет, это не палиндром
 
+	var str_10 string = "madam"
 
+	str_10 = strings.ToLower(strings.ReplaceAll(str_10, " ", ""))
+
+	for i := 0; i < len(str_10)/2; i++ {
+		if str_10[i] != str_10[len(str_10)-1-i] {
+			fmt.Println("Нет, это не палиндром")
+			break
+		}
+	}
+	fmt.Println("Да, это палиндром")
 
 	// 11. Напишите программу, которая находит сумму чисел от X до Y.
 	// Ввод: 3, 5 → Вывод: 12
 	// Ввод: 1, 4 → Вывод: 10
 
+	var q, y int
+	fmt.Print("Введите первое число (X): ")
+	fmt.Scan(&q)
 
-	
+	fmt.Print("Введите второе число (Y): ")
+	fmt.Scan(&y)
+
+	if q > y {
+		q, y = y, q
+	}
+	sum_11 := 0
+	for i := q; i <= y; i++ {
+		sum_11 += i
+	}
+	fmt.Printf("Сумма чисел от %d до %d: %d\n", q, y, sum_11)
+
 	// 12. Напишите программу, которая выводит все простые числа до числа N.
 	// Ввод: 10 → Вывод: 2 3 5 7
 	// Ввод: 20 → Вывод: 2 3 5 7 11 13 17 19
