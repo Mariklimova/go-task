@@ -144,12 +144,33 @@ func average_value(sl []int) int {
 	for _, item := range sl {
 		sum += item
 	}
-	return sum/len(sl)
+	return sum / len(sl)
 }
 
 // 10. Создайте функцию, которая принимает массив чисел, находит все повторяющиеся элементы и
 // удаляет их. После этого функция должна проверить, не является ли массив пустым, и вывести
 // соответствующее сообщение.
+
+func removeDuplicates(nums []int) []int {
+
+	seen := make(map[int]bool)
+	result := []int{}
+
+	for _, num := range nums {
+		if !seen[num] {
+			seen[num] = true
+			result = append(result, num)
+		}
+	}
+	return result
+}
+func processArray(numbers []int) []int {
+	uniqueNumbers := removeDuplicates(numbers)
+	if len(uniqueNumbers) == 0 {
+		fmt.Println("Массив пуст после удаления дубликатов")
+	}
+	return uniqueNumbers
+}
 
 // 11. Разработайте программу, которая находит сумму всех нечётных чисел в слайсе и выводит их
 // индексы.
@@ -168,4 +189,5 @@ func main() {
 	fmt.Println(incl_el([]int{1, 0, 2, 3, 0, 4, 5}, 7))
 	fmt.Println(calculate(10, 5, "+"))
 	fmt.Println(average_value([]int{1, 2, 3, 4, 5}))
+	fmt.Println("Итоговый результат:", processArray([]int{1, 2, 2, 3, 4, 4, 5}))
 }
