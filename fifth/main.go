@@ -175,9 +175,48 @@ func processArray(numbers []int) []int {
 // 11. Разработайте программу, которая находит сумму всех нечётных чисел в слайсе и выводит их
 // индексы.
 
+func sumOddNumbersWithIndices(slice []int) (int, []int) {
+	sum := 0
+	var indices []int
+
+	for index, value := range slice {
+		if value%2 != 0 {
+			sum += value
+			indices = append(indices, index)
+		}
+	}
+
+	return sum, indices
+}
+
 // 12. Напишите программу, которая проверяет, является ли слайс чисел палиндромом, то есть
 // читается ли слайс одинаково в обоих направлениях. В случае палиндрома программа должна
 // вывести true, иначе false.
+
+func isPalindrome(slice []int) bool {
+	for i := 0; i < len(slice)/2; i++ {
+		if slice[i] != slice[len(slice)-1-i] {
+			return false
+		}
+	}
+	return true
+}
+
+// 13. Напишите программу, которая находит сумму всех чисел в слайсе, которые больше среднего
+// значения
+
+
+
+// 14. Напишите программу, которая генерирует два случайных слайса чисел от 1 до 100 и находит
+// пересечение этих слайсов (элементы, которые встречаются в обоих слайсах).
+
+
+
+// 15. Напишите программу, которая генерирует слайс из N случайных чисел от 1 до 100, затем
+// создает два слайса: один с чисел, делящихся на 5, а другой — на 7.
+
+
+
 
 func main() {
 	fmt.Println(verific(5))
@@ -190,4 +229,8 @@ func main() {
 	fmt.Println(calculate(10, 5, "+"))
 	fmt.Println(average_value([]int{1, 2, 3, 4, 5}))
 	fmt.Println("Итоговый результат:", processArray([]int{1, 2, 2, 3, 4, 4, 5}))
+	sum, oddIndices := sumOddNumbersWithIndices([]int{2, 5, 8, 3, 6, 1, 7, 4})
+	fmt.Printf("Сумма нечётных чисел: %d\nИндексы нечётных чисел: %v\n", sum, oddIndices)
+	fmt.Println(isPalindrome([]int{1, 2, 3, 2, 1}))
+
 }
