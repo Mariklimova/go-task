@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
+	// "time"
 )
 
 //1. Напишите функцию, которая принимает целое число и возвращает строку "Четное" или "Нечетное", в зависимости от того, является ли число чётным или нечётным.
@@ -205,18 +207,76 @@ func isPalindrome(slice []int) bool {
 // 13. Напишите программу, которая находит сумму всех чисел в слайсе, которые больше среднего
 // значения
 
+func sumAboveAverage(numbers []int) int {
+	sum := 0
+	for _, num := range numbers {
+		sum += num
+	}
+	average := sum / len(numbers)
 
+	result := 0
+	for _, num := range numbers {
+		if num > average {
+			result += num
+		}
+	}
+
+	return result
+}
 
 // 14. Напишите программу, которая генерирует два случайных слайса чисел от 1 до 100 и находит
 // пересечение этих слайсов (элементы, которые встречаются в обоих слайсах).
 
+func generateRandomSlice(length, max int) []int {
+	slice := make([]int, length)
+	for i := 0; i < length; i++ {
+		slice[i] = rand.Intn(max) + 1
+	}
+	return slice
+}
 
+func findIntersection(slice1, slice2 []int) []int {
+	elements := make(map[int]bool)
+	for _, num := range slice1 {
+		elements[num] = true
+	}
+
+	var result []int
+	for _, num := range slice2 {
+		if elements[num] {
+			result = append(result, num)
+			delete(elements, num)
+		}
+	}
+
+	return result
+}
 
 // 15. Напишите программу, которая генерирует слайс из N случайных чисел от 1 до 100, затем
 // создает два слайса: один с чисел, делящихся на 5, а другой — на 7.
 
+func generateRandomNumbers(n, min, max int) []int {
+	numbers := make([]int, n)
+	for i := 0; i < n; i++ {
+		numbers[i] = rand.Intn(max-min+1) + min
+	}
+	return numbers
+}
 
+func splitNumbers(numbers []int) ([]int, []int) {
+	var divisibleBy5, divisibleBy7 []int
 
+	for _, num := range numbers {
+		if num%5 == 0 {
+			divisibleBy5 = append(divisibleBy5, num)
+		}
+		if num%7 == 0 {
+			divisibleBy7 = append(divisibleBy7, num)
+		}
+	}
+
+	return divisibleBy5, divisibleBy7
+}
 
 func main() {
 	fmt.Println(verific(5))
@@ -232,5 +292,22 @@ func main() {
 	sum, oddIndices := sumOddNumbersWithIndices([]int{2, 5, 8, 3, 6, 1, 7, 4})
 	fmt.Printf("Сумма нечётных чисел: %d\nИндексы нечётных чисел: %v\n", sum, oddIndices)
 	fmt.Println(isPalindrome([]int{1, 2, 3, 2, 1}))
+	fmt.Printf("Сумма чисел, больших среднего значения: %d\n", sumAboveAverage([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}))
+
+	slice1 := generateRandomSlice(10, 100) 
+	slice2 := generateRandomSlice(10, 100) 
+	fmt.Println("Первый слайс:", slice1)
+	fmt.Println("Второй слайс:", slice2)
+	fmt.Println("Пересечение:", findIntersection(slice1, slice2))
+
+
+	var n int
+	fmt.Print("Введите количество чисел (N): ")
+	fmt.Scan(&n)
+	fmt.Println("Исходный слайс:", generateRandomNumbers(n, 1, 100))
+	divisibleBy5, divisibleBy7 := splitNumbers(generateRandomNumbers(n, 1, 100))
+	fmt.Println("Числа, делящиеся на 5:", divisibleBy5)
+	fmt.Println("Числа, делящиеся на 7:", divisibleBy7)
+
 
 }
