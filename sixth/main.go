@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	// "strings"
-	// "math"
 )
 
 // 1. Создайте структуру Person с полями Name и Age. Добавьте метод SayHello, который выводит:
@@ -46,7 +44,7 @@ func StudentActivity(s Student) {
 }
 
 type Account struct {
-	name  string
+	name    string
 	balance float64
 }
 
@@ -61,6 +59,39 @@ func Withdraw(a Account, newSum float64) {
 
 	fmt.Println(a.balance)
 }
+
+// 5. Создайте структуру Movie с полями Название и Рейтинг. Добавьте метод IsHit(), который
+// возвращает true, если рейтинг фильма 8.0 или выше.
+type Movie struct {
+	name   string
+	rating float32
+}
+
+func IsHit(m Movie) {
+	if m.rating >= 8.0 {
+		fmt.Println(true)
+	} else {
+		fmt.Println(false)
+	}
+}
+
+// 6. Создайте структуру User с полями Имя и Пароль. Добавьте метод ChangePassword(oldPass,
+// 	newPass string), который меняет пароль, только если введён правильный старый пароль.
+
+type User struct {
+	name     string
+	password string
+}
+
+func ChangePassword(u User, oldPass, newPass string) {
+	if u.password == oldPass {
+		u.password = newPass
+		fmt.Printf("Пароль для пользователя %s успешно изменен\n", u.name)
+	} else {
+		fmt.Println("Ошибка: неверный старый пароль")
+	}
+}
+
 
 func main() {
 
@@ -80,8 +111,8 @@ func main() {
 	// Напишите функцию, которая принимает объект Student и возвращает true, если студент сдал
 	// экзамен (оценка 60 и выше).
 	student := Student{
-		name: "Agata",
-		grade:  77,
+		name:  "Agata",
+		grade: 77,
 	}
 	StudentActivity(student)
 	// 4. Создайте структуру Account, которая содержит имя владельца и текущий баланс. Реализуйте
@@ -89,7 +120,7 @@ func main() {
 	// счёта.
 
 	account := Account{
-		name:  "Andrey",
+		name:    "Andrey",
 		balance: 50000.0,
 	}
 	Deposit(account, 45000.0)
@@ -97,4 +128,35 @@ func main() {
 
 	// 5. Создайте структуру Movie с полями Название и Рейтинг. Добавьте метод IsHit(), который
 	// возвращает true, если рейтинг фильма 8.0 или выше.
+	movie := Movie{
+		name:   "The Vampire diaries",
+		rating: 8.8,
+	}
+	IsHit(movie)
+
+	// 6. Создайте структуру User с полями Имя и Пароль. Добавьте метод ChangePassword(oldPass,
+	// 	newPass string), который меняет пароль, только если введён правильный старый пароль.
+
+	user := User{
+        name:     "Иван",
+        password: "qwerty123",
+    }
+	ChangePassword(user,"qwerty123", "newSecurePassword")
+
+	// 7. Создайте структуру Item с полями Название и Цена. Создайте структуру Store, которая
+	// 	содержит имя магазина и слайс из товаров []Item. Добавьте метод TotalPrice(), который
+	// 	возвращает суммарную стоимость всех товаров в магазине.
+
+	// 8. Создайте структуру Client с полями Имя и Баланс. Создайте слайс клиентов и функцию
+	// 	FindRichestClient(clients []Client), которая находит и возвращает клиента с самым большим
+	// 	балансом.
+
+	// 9. Создайте структуру User с полями Логин и Пароль. Создайте функцию Login(users []User, login,
+	// 	password string), которая проверяет, есть ли пользователь с таким логином и паролем. Если
+	// 	// пользователь найден — верните true, иначе — false
+
+	// 10. Найти числа находящиеся сразу в двух слайсах Пример: [1,2,3] и [2,3,4] → [2,3]
+
+	// 11. Найти объединение двух слайсов без повторов Пример: [1,2,3] и [2,3,4] → [1,2,3,4]
+
 }
