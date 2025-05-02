@@ -92,6 +92,27 @@ func ChangePassword(u User, oldPass, newPass string) {
 	}
 }
 
+// 7. Создайте структуру Item с полями Название и Цена. Создайте структуру Store, которая
+// 	содержит имя магазина и слайс из товаров []Item. Добавьте метод TotalPrice(), который
+// 	возвращает суммарную стоимость всех товаров в магазине.
+
+type Item struct {
+	name  string
+	price float64
+}
+
+type Store struct {
+	name  string
+	items []Item
+}
+
+func TotalPrice(s Store) float64 {
+	total := 0.0
+	for _, item := range s.items {
+		total += item.price
+	}
+	return total
+}
 
 func main() {
 
@@ -138,14 +159,30 @@ func main() {
 	// 	newPass string), который меняет пароль, только если введён правильный старый пароль.
 
 	user := User{
-        name:     "Иван",
-        password: "qwerty123",
-    }
-	ChangePassword(user,"qwerty123", "newSecurePassword")
+		name:     "Иван",
+		password: "qwerty123",
+	}
+	ChangePassword(user, "qwerty123", "newSecurePassword")
 
 	// 7. Создайте структуру Item с полями Название и Цена. Создайте структуру Store, которая
 	// 	содержит имя магазина и слайс из товаров []Item. Добавьте метод TotalPrice(), который
 	// 	возвращает суммарную стоимость всех товаров в магазине.
+
+	store := Store{
+		name: "Продовольственный магазин",
+		items: []Item{
+			{name: "Хлеб", price: 50.5},
+			{name: "Молоко", price: 80.0},
+			{name: "Яйца", price: 120.75},
+		},
+	}
+
+	total := TotalPrice(store)
+	fmt.Printf("Общая стоимость товаров в магазине '%s': %.2f руб.\n", store.name, total)
+
+	store.items = append(store.items, Item{name: "Сыр", price: 350.25})
+
+	fmt.Printf("Общая стоимость после добавления сыра: %.2f руб.\n", TotalPrice(store))
 
 	// 8. Создайте структуру Client с полями Имя и Баланс. Создайте слайс клиентов и функцию
 	// 	FindRichestClient(clients []Client), которая находит и возвращает клиента с самым большим
