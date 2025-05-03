@@ -114,6 +114,31 @@ func TotalPrice(s Store) float64 {
 	return total
 }
 
+// 8. Создайте структуру Client с полями Имя и Баланс. Создайте слайс клиентов и функцию
+// 	FindRichestClient(clients []Client), которая находит и возвращает клиента с самым большим
+// 	балансом.
+
+type Client struct {
+	Name    string
+	Balance float64
+}
+
+func FindRichestClient(clients []Client) Client {
+	if len(clients) == 0 {
+		return Client{}
+	}
+
+	richest := clients[0]
+
+	for _, client := range clients {
+		if client.Balance > richest.Balance {
+			richest = client
+		}
+	}
+
+	return richest
+}
+
 func main() {
 
 	person := Person{
@@ -187,6 +212,16 @@ func main() {
 	// 8. Создайте структуру Client с полями Имя и Баланс. Создайте слайс клиентов и функцию
 	// 	FindRichestClient(clients []Client), которая находит и возвращает клиента с самым большим
 	// 	балансом.
+
+	clients := []Client{
+		{Name: "Алексей", Balance: 1500.50},
+		{Name: "Мария", Balance: 3200.75},
+		{Name: "Иван", Balance: 800.25},
+		{Name: "Ольга", Balance: 5000.00},
+	}
+
+	richest := FindRichestClient(clients)
+	fmt.Printf("Самый богатый клиент: %s (Баланс: %.2f)\n", richest.Name, richest.Balance)
 
 	// 9. Создайте структуру User с полями Логин и Пароль. Создайте функцию Login(users []User, login,
 	// 	password string), которая проверяет, есть ли пользователь с таким логином и паролем. Если
