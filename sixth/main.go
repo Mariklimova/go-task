@@ -139,6 +139,24 @@ func FindRichestClient(clients []Client) Client {
 	return richest
 }
 
+// 9. Создайте структуру User с полями Логин и Пароль. Создайте функцию Login(users []User, login,
+// 	password string), которая проверяет, есть ли пользователь с таким логином и паролем. Если
+// 	// пользователь найден — верните true, иначе — false
+
+type User_9 struct {
+	Login    string
+	Password string
+}
+
+func Login(users []User_9, login, password string) bool {
+	for _, user := range users {
+		if user.Login == login && user.Password == password {
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
 
 	person := Person{
@@ -226,6 +244,16 @@ func main() {
 	// 9. Создайте структуру User с полями Логин и Пароль. Создайте функцию Login(users []User, login,
 	// 	password string), которая проверяет, есть ли пользователь с таким логином и паролем. Если
 	// 	// пользователь найден — верните true, иначе — false
+
+	users := []User_9{
+		{Login: "admin", Password: "qwerty123"},
+		{Login: "user1", Password: "password1"},
+		{Login: "user2", Password: "myp@ssw0rd"},
+	}
+
+	fmt.Println(Login(users, "admin", "qwerty123")) 
+	fmt.Println(Login(users, "user1", "wrongpass")) 
+	fmt.Println(Login(users, "unknown", "password")) 
 
 	// 10. Найти числа находящиеся сразу в двух слайсах Пример: [1,2,3] и [2,3,4] → [2,3]
 
