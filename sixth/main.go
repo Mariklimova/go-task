@@ -157,6 +157,26 @@ func Login(users []User_9, login, password string) bool {
 	return false
 }
 
+// 10. Найти числа находящиеся сразу в двух слайсах Пример: [1,2,3] и [2,3,4] → [2,3]
+func findCommonElements(slice1, slice2 []int) []int {
+	elements := make(map[int]bool)
+
+	for _, num := range slice1 {
+		elements[num] = true
+	}
+
+	var common []int
+	for _, num := range slice2 {
+		if elements[num] {
+			common = append(common, num)
+			delete(elements, num)
+		}
+	}
+
+	return common
+}
+
+
 func main() {
 
 	person := Person{
@@ -251,11 +271,17 @@ func main() {
 		{Login: "user2", Password: "myp@ssw0rd"},
 	}
 
-	fmt.Println(Login(users, "admin", "qwerty123")) 
-	fmt.Println(Login(users, "user1", "wrongpass")) 
-	fmt.Println(Login(users, "unknown", "password")) 
+	fmt.Println(Login(users, "admin", "qwerty123"))
+	fmt.Println(Login(users, "user1", "wrongpass"))
+	fmt.Println(Login(users, "unknown", "password"))
 
 	// 10. Найти числа находящиеся сразу в двух слайсах Пример: [1,2,3] и [2,3,4] → [2,3]
+
+	slice1 := []int{1, 2, 3}
+	slice2 := []int{2, 3, 4}
+	
+	result := findCommonElements(slice1, slice2)
+	fmt.Println(result)
 
 	// 11. Найти объединение двух слайсов без повторов Пример: [1,2,3] и [2,3,4] → [1,2,3,4]
 
