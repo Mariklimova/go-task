@@ -176,7 +176,27 @@ func findCommonElements(slice1, slice2 []int) []int {
 	return common
 }
 
+// 11. Найти объединение двух слайсов без повторов Пример: [1,2,3] и [2,3,4] → [1,2,3,4]
+func unionOfSlices(slice_1, slice_2 []int) []int {
+	uniqueElements := make(map[int]bool)
+	var union []int
 
+	for _, num := range slice_1 {
+		if !uniqueElements[num] {
+			uniqueElements[num] = true
+			union = append(union, num)
+		}
+	}
+
+	for _, num := range slice_2 {
+		if !uniqueElements[num] {
+			uniqueElements[num] = true
+			union = append(union, num)
+		}
+	}
+
+	return union
+}
 func main() {
 
 	person := Person{
@@ -279,10 +299,13 @@ func main() {
 
 	slice1 := []int{1, 2, 3}
 	slice2 := []int{2, 3, 4}
-	
+
 	result := findCommonElements(slice1, slice2)
 	fmt.Println(result)
 
 	// 11. Найти объединение двух слайсов без повторов Пример: [1,2,3] и [2,3,4] → [1,2,3,4]
+	slice_1 := []int{1, 2, 3}
+	slice_2 := []int{2, 3, 4}
 
+	fmt.Println(unionOfSlices(slice_1, slice_2))
 }
