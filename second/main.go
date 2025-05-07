@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
-	// "math"
 )
 
 func main() {
@@ -179,6 +179,41 @@ func main() {
 	// Ввод: 10 → Вывод: 2 3 5 7
 	// Ввод: 20 → Вывод: 2 3 5 7 11 13 17 19
 
+	n:=10
+		if n <= 1 {
+		fmt.Println(false)
+		}
+		if n == 2 {
+			fmt.Println(true)
+		if n%2 == 0 {
+			fmt.Println(false)
+		}
+	
+		maxDivisor := int(math.Sqrt(float64(n))) + 1
+		for i := 3; i < maxDivisor; i += 2 {
+			if n%i == 0 {
+				fmt.Println(false)
+			}
+		}
+		fmt.Println(true)
+	
+	
+		if n < 2 {
+			fmt.Println("Нет простых чисел до", n)
+		
+		}
+	
+		fmt.Printf("Простые числа до %d: ", n)
+		for i := 2; i <= n; i++ {
+			
+				fmt.Print(i, " ")
+			
+		}
+		fmt.Println()
+	
+
+
+	}
 	// 13. Напишите программу, которая находит индекс первого вхождения символа в строку.
 	// Ввод: hello, e → Вывод: 1
 	// Ввод: world, o → Вывод: 1
@@ -195,4 +230,4 @@ func main() {
 	// Ввод: Hello, World → Вывод: 5 5
 	// Ввод: Go, Programming → Вывод: 2 11
 
-}
+	}
