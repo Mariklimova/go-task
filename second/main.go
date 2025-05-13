@@ -201,45 +201,69 @@ func main() {
 	// Ввод: 10 → Вывод: 2 3 5 7
 	// Ввод: 20 → Вывод: 2 3 5 7 11 13 17 19
 
-	var num_12 int =10
-		if num_12 <= 1 {
-		fmt.Println(false)
-		}
-		if num_12 == 2 {
-			fmt.Println(true)
-		if num_12%2 == 0 {
-			fmt.Println(false)
-		}
-	
+	num_12 := 10
+
+	// Проверка, является ли num_12 простым числом
+	if num_12 <= 1 {
+		fmt.Println(num_12, "не простое число")
+	} else if num_12 == 2 {
+		fmt.Println(num_12, "простое число")
+	} else if num_12%2 == 0 {
+		fmt.Println(num_12, "не простое число (делится на 2)")
+	} else {
+		isPrime := true
 		maxDivisor := int(math.Sqrt(float64(num_12))) + 1
 		for i := 3; i < maxDivisor; i += 2 {
 			if num_12%i == 0 {
-				fmt.Println(false)
+				isPrime = false
+				break
 			}
 		}
-		fmt.Println(true)
-	
-	
-		if num_12 < 2 {
-			fmt.Println("Нет простых чисел до", num_12)
-		
+		if isPrime {
+			fmt.Println(num_12, "простое число")
+		} else {
+			fmt.Println(num_12, "не простое число")
 		}
-	
+	}
+
+	// Вывод всех простых чисел до num_12
+	if num_12 < 2 {
+		fmt.Println("Нет простых чисел до", num_12)
+	} else {
 		fmt.Printf("Простые числа до %d: ", num_12)
 		for i := 2; i <= num_12; i++ {
-			
+			isPrime := true
+			if i <= 1 {
+				isPrime = false
+			} else if i == 2 {
+				isPrime = true
+			} else if i%2 == 0 {
+				isPrime = false
+			} else {
+				maxDiv := int(math.Sqrt(float64(i))) + 1
+				for j := 3; j < maxDiv; j += 2 {
+					if i%j == 0 {
+						isPrime = false
+						break
+					}
+				}
+			}
+			if isPrime {
 				fmt.Print(i, " ")
-			
+			}
 		}
 		fmt.Println()
-	
-
-
 	}
+	
 	// 13. Напишите программу, которая находит индекс первого вхождения символа в строку.
 	// Ввод: hello, e → Вывод: 1
 	// Ввод: world, o → Вывод: 1
 
+	str_13 := "hello"
+	const char rune = 'e'
+	index := strings.IndexRune(str_13, char)
+	fmt.Println(index)
+	
 	// 	14. Напишите программу, которая выводит все числа от 1 до N с шагом 2.
 	// Ввод: 10 → Вывод: 1 3 5 7 9
 	// Ввод: 6 → Вывод: 1 3 5
@@ -252,4 +276,4 @@ func main() {
 	// Ввод: Hello, World → Вывод: 5 5
 	// Ввод: Go, Programming → Вывод: 2 11
 
-	}
+}
