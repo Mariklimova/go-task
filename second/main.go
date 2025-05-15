@@ -260,7 +260,7 @@ func main() {
 	// Ввод: world, o → Вывод: 1
 
 	str_13 := "hello"
-	const char rune = 'e'
+	const char rune = 'l'
 	index := strings.IndexRune(str_13, char)
 	fmt.Println(index)
 
@@ -272,17 +272,29 @@ func main() {
 	for i := 1; i < num_14; i += 2 {
 		fmt.Print(i, " ")
 	}
+	fmt.Println()
 
 	// 15. Напишите программу, которая проверяет, является ли число отрицательным.
 	// Ввод: -5 → Вывод: Отрицательное число
 	// Ввод: 3 → Вывод: Не отрицательное число
 
-
+	const num_15 int = -5
+	if num_15 < 0 {
+		fmt.Println("Отрицательное число")
+	} else {
+		fmt.Println("Не отрицательное число")
+	}
 
 	// 16. Напишите программу, которая принимает 2 строки и выводит их длину.
 	// Ввод: Hello, World → Вывод: 5 5
 	// Ввод: Go, Programming → Вывод: 2 11
-
-
-	
+	str_161 := "Go"
+	str_162 := "Programming"
+	var strings []string
+	strings = append(strings, str_161, str_162)
+	var result_16 []int
+	for _, elem := range strings {
+		result_16 = append(result_16, len(elem))
+	}
+	fmt.Println(result_16)
 }
